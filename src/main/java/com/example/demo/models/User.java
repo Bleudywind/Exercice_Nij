@@ -2,10 +2,7 @@ package com.example.demo.models;
 
 import com.example.demo.models.base.EntityBase;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +14,8 @@ public class User extends EntityBase {
     @Column(name = "age")
     private Integer age;
 
-    @ManyToMany(mappedBy = "users", targetEntity = Role.class)
-    private List<Role> roles = new ArrayList<Role>();
+    @OneToMany(mappedBy = "user")
+    private List<UserRole> roles = new ArrayList<UserRole>();
 
     public Integer getAge() {
         return age;
@@ -36,11 +33,11 @@ public class User extends EntityBase {
         this.name = name;
     }
 
-    public List<Role> getRoles() {
+    public List<UserRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<UserRole> roles) {
         this.roles = roles;
     }
 }
