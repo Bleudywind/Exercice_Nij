@@ -39,4 +39,9 @@ public class UserControler {
     public void update(@RequestBody Users user) {
         userService.update(user);
     }
+
+    @GetMapping("/{id}/roles")
+    public List<String> getRoles(@PathVariable Integer id) {
+        return userService.getRolesById(id);
+    }
 }

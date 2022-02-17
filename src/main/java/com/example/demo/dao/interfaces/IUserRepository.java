@@ -22,4 +22,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
     @Query(value = "DELETE FROM users WHERE id =?1", nativeQuery = true)
     public void deleteById(Integer id);
 
+    @Query(value ="SELECT name FROM roles WHERE id IN (SELECT idrole FROM associationusersroles WHERE iduser = ?1)", nativeQuery = true)
+    public List<String> getRolesbyId(Integer userid);
+
 }

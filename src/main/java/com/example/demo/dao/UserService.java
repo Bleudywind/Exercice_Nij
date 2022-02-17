@@ -33,4 +33,8 @@ public class UserService {
     public void delete(Users user) {
         userRepository.delete(user);
     }
+
+    public List<String> getRolesById(Integer id) {
+        return userRepository.getRolesbyId(id);
+    }
 }
