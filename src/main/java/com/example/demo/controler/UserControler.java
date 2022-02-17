@@ -20,9 +20,9 @@ public class UserControler {
         userService.create(user);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        userService.delete(id);
+    @DeleteMapping
+    public void delete(@RequestBody Users user) {
+        userService.delete(user);
     }
 
     @GetMapping
