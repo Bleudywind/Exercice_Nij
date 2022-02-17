@@ -23,6 +23,9 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
     @Query(value = "SELECT * FROM users WHERE id = ?1", nativeQuery = true)
     public Users getById(Integer id);
 
+    @Query(value = "UPDATE users u SET name = 'u.getName()' , age='u.getAge()', WHERE id = ?2")
+    public void update (Users user, Integer id);
+
 
 
 
