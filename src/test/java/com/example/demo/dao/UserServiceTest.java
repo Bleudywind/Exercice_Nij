@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.models.Users;
+import com.example.demo.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ public class UserServiceTest {
 
     @Test
     public void create() {
-        Users user = new Users();
+        User user = new User();
         user.setId(3);
         user.setAge(18);
         user.setName("PatateTest");
@@ -29,14 +29,14 @@ public class UserServiceTest {
 
     @Test
     public void getById() {
-        Users user = userService.getById(2);
+        User user = userService.getById(2);
         System.out.println("\nGetting by id:");
         System.out.println(user.getName());
     }
 
     @Test
     public void update (){
-        Users user = new Users();
+        User user = new User();
         user.setId(2);
         user.setAge(20);
         user.setName("PatateTestModify");
@@ -48,14 +48,14 @@ public class UserServiceTest {
 
     @Test
     public void getAll(){
-        List<Users> users = userService.getAll();
+        List<User> users = userService.getAll();
         System.out.println("\nGetting all:");
         System.out.println(users);
     }
 
     @Test
     public void delete(){
-        Users user = new Users();
+        User user = new User();
         user.setId(1);
         user.setAge(10);
         user.setName("test1");
