@@ -13,20 +13,13 @@ import java.util.List;
 @Transactional
 public interface IUserRepository extends JpaRepository<Users, Long> {
 
-
-
     @Query(value = "SELECT * FROM users", nativeQuery = true)
     public List<Users> getAllUser();
-
-
 
     @Query(value = "SELECT * FROM users WHERE id = ?1", nativeQuery = true)
     public Users getById(Integer id);
 
-    @Query(value = "UPDATE users u SET name = 'u.getName()' , age='u.getAge()', WHERE id = ?2")
-    public void update (Users user, Integer id);
-
-
-
+    @Query(value = "DELETE FROM users WHERE id =?1", nativeQuery = true)
+    public void deleteById(Integer id);
 
 }

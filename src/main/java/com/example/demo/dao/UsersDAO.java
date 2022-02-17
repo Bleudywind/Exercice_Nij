@@ -19,9 +19,6 @@ public class UsersDAO extends BaseDAO<Users> implements IUsersDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private IUserRepository iUserRepository;
-
 
     @Override
     public void create(Users user) {
@@ -48,27 +45,17 @@ public class UsersDAO extends BaseDAO<Users> implements IUsersDAO {
     @Override
     public List<Users> getAll() {
 
-        // methode repository JPA
-        List<Users> users = iUserRepository.getAllUser();
-
-        /*  methode classique de requète
-
         String sql = "SELECT * FROM users";
         List<Users> usersList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Users.class));
 
-         */
-        return users;
+        return usersList;
     }
 
     @Override
     public Users getById(Integer id) {
 
-        /*
         String sql = "SELECT * FROM users WHERE id= ?";
         return (Users) jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Users.class));
-         */
-
-        return iUserRepository.getById(id);
     }
 
 

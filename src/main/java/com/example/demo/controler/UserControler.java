@@ -1,7 +1,6 @@
 package com.example.demo.controler;
 
-import com.example.demo.dao.UsersDAO;
-import com.example.demo.dao.interfaces.IUserRepository;
+import com.example.demo.dao.UserService;
 import com.example.demo.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,31 +12,31 @@ import java.util.List;
 public class UserControler {
 
     @Autowired
-    private UsersDAO usersDAO;
+    private UserService userService;
 
 
     @PostMapping
     public void create(@RequestBody Users user) {
-        usersDAO.create(user);
+        userService.create(user);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
-        usersDAO.delete(id);
+        userService.delete(id);
     }
 
     @GetMapping
     public List<Users> getAll() {
-        return usersDAO.getAll();
+        return userService.getAll();
     }
 
     @GetMapping("/{id}")
     public Users getById (@PathVariable Integer id) {
-        return usersDAO.getById(id);
+        return userService.getById(id);
     }
 
     @PutMapping
-    public void update(@RequestBody Users user, @PathVariable Integer id) {
-        usersDAO.update(user, id);
+    public void update(@RequestBody Users user) {
+        userService.update(user);
     }
 }
