@@ -12,7 +12,7 @@ public class Role extends EntityBase {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = User.class)
     private List<User> users = new ArrayList<User>();
 
     public String getName() {

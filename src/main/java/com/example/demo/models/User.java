@@ -17,7 +17,7 @@ public class User extends EntityBase {
     @Column(name = "age")
     private Integer age;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "users", targetEntity = Role.class)
     private List<Role> roles = new ArrayList<Role>();
 
     public Integer getAge() {
