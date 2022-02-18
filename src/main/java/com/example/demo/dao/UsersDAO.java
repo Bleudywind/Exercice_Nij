@@ -1,27 +1,26 @@
 package com.example.demo.dao;
 
 import com.example.demo.dao.base.BaseDAO;
-import com.example.demo.dao.interfaces.IUserRepository;
 import com.example.demo.dao.interfaces.IUsersDAO;
-import com.example.demo.models.Users;
+import com.example.demo.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
 
 @Component
-public class UsersDAO extends BaseDAO<Users> implements IUsersDAO {
+public class UsersDAO extends BaseDAO<User> implements IUsersDAO {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
 
     @Override
-    public void create(Users user) {
+    public void create(User user) {
 
         StringBuilder stringBuilder = new StringBuilder();
         String sql = String.format("INSERT INTO users (name, age) VALUES ('%s','%s')", user.getName(), user.getAge());
@@ -43,24 +42,24 @@ public class UsersDAO extends BaseDAO<Users> implements IUsersDAO {
     }
 
     @Override
-    public List<Users> getAll() {
+    public List<User> getAll() {
 
         String sql = "SELECT * FROM users";
-        List<Users> usersList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Users.class));
+        List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
 
-        return usersList;
+        return userList;
     }
 
     @Override
-    public Users getById(Integer id) {
+    public User getById(Integer id) {
 
         String sql = "SELECT * FROM users WHERE id= ?";
-        return (Users) jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Users.class));
+        return (User) jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(User.class));
     }
 
 
     @Override
-    public void update(Users user, Integer id) {
+    public void update(User user, Integer id) {
         String sql = String.format("UPDATE users SET name = '%s' , age='%s', WHERE id = %s", user.getName(), user.getAge(), user.getId());
 
         int rows = jdbcTemplate.update(sql);

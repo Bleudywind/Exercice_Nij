@@ -1,7 +1,7 @@
 package com.example.demo.controler;
 
 import com.example.demo.dao.UserService;
-import com.example.demo.models.Users;
+import com.example.demo.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,27 +16,27 @@ public class UserControler {
 
 
     @PostMapping
-    public void create(@RequestBody Users user) {
+    public void create(@RequestBody User user) {
         userService.create(user);
     }
 
     @DeleteMapping
-    public void delete(@RequestBody Users user) {
+    public void delete(@RequestBody User user) {
         userService.delete(user);
     }
 
     @GetMapping
-    public List<Users> getAll() {
+    public List<User> getAll() {
         return userService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Users getById (@PathVariable Integer id) {
+    public User getById (@PathVariable Integer id) {
         return userService.getById(id);
     }
 
     @PutMapping
-    public void update(@RequestBody Users user) {
+    public void update(@RequestBody User user) {
         userService.update(user);
     }
 
