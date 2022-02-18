@@ -12,16 +12,16 @@ import java.util.List;
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT * FROM users", nativeQuery = true)
+    @Query(value = "SELECT * FROM user", nativeQuery = true)
     public List<User> getAllUser();
 
-    @Query(value = "SELECT * FROM users WHERE id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE id = ?1", nativeQuery = true)
     public User getById(Integer id);
 
-    @Query(value = "DELETE FROM users WHERE id =?1", nativeQuery = true)
+    @Query(value = "DELETE FROM user WHERE id =?1", nativeQuery = true)
     public void deleteById(Integer id);
 
-    @Query(value ="SELECT name FROM roles WHERE id IN (SELECT idrole FROM associationusersroles WHERE iduser = ?1)", nativeQuery = true)
+    @Query(value ="SELECT name FROM role WHERE id IN (SELECT role_id FROM user_role WHERE user_id = ?1)", nativeQuery = true)
     public List<String> getRolesbyId(Integer userid);
 
 }
